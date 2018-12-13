@@ -25,5 +25,24 @@ describe 'Observer' do
   end
 
   context 'Metaphor' do
+    it 'subscribers are notified when send a post' do
+      subject = WebsiteBlog.new
+
+      subscribers = SubscribersObserver.new(subject)
+      subject.add(subscribers)
+      subject.create_post
+
+      expect(subscribers.emails_send?).to be true
+    end
+
+    it 'friends are notified when send a post' do
+      subject = WebsiteBlog.new
+
+      friends = SubscribersObserver.new(subject)
+      subject.add(friends)
+      subject.create_post
+
+      expect(friends.emails_send?).to be true
+    end
   end
 end

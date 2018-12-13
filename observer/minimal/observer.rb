@@ -1,3 +1,9 @@
+class ObserversInterface
+  def send
+    raise 'You must implement this method'
+  end
+end
+
 class SubjectObservable
   def initialize
     @finish = false
@@ -24,7 +30,7 @@ class SubjectObservable
   end
 end
 
-class OneObserver
+class OneObserver < ObserversInterface
   def initialize(observable)
     @subject = observable
     @state = "I am waiting"
@@ -37,7 +43,7 @@ class OneObserver
   end
 end
 
-class TwoObserver
+class TwoObserver < ObserversInterface
   def initialize(observable)
     @subject = observable
     @state = "I am waiting"
